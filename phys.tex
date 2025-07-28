@@ -1,0 +1,67 @@
+\documentclass[a4paper]{scrartcl}
+
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{axiom}{Axiom}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiterX\inpr[2]{\langle}{\rangle}{#1, #2}
+
+\newcommand\C{\mathbb{C}}
+\newcommand\R{\mathbb{R}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\N{\mathbb{N}}
+\renewcommand\O{\varnothing}
+\let\epsilon\varepsilon
+\let\vec\mathbf
+
+\begin{document}
+\title{Physics 2: Advanced \\ PHYC10002}
+\author{Edward Wang}
+\date{Semester 2, 2025}
+\maketitle
+
+\tableofcontents
+
+\section{Electricity}
+\begin{definition}
+  \emph{Electrostatics} concerns forces between charges at rest.
+\end{definition}
+\begin{theorem}[Coulomb's law]
+  The electrostatic force experienced by a charge $q_1$ in the vicinity of another charge $q_2$ is equal to \[
+    \vec{F}_{1} = \frac{1}{4\pi \epsilon_0} \frac{q_1q_2}{\abs{\vec{r}_{12}}}\hat{\vec{r}}_{12},
+  \] 
+  where $\epsilon_0 \approx 8.85\times 10^{-12}$.
+\end{theorem}
+\begin{definition}[Coulomb's constant]
+  Coulomb's law is sometimes written as \[
+    \vec{F}_{1} = k_e\frac{q_1q_2}{\abs{\vec{r}_{12}}}\hat{\vec{r}}_{12},
+  \] 
+  where $k_e \approx 8.99 \times 10^{9}$.
+\end{definition}
+\begin{remark}
+  The electromagnetic force at a nuclear scale is far stronger than the gravitational force. Consider an electron and a proton about $10^{-10}$m apart. Given that $k_e\approx 8.99\times 10^{9}$, $G\approx 6.67\times 10^{-11}$, $m_e \approx 9.1\times 10^{-31}$, $m_p \approx 1.6\times 10^{-27}$, and $e \approx 1.6\time 10^{-19}$, we would have  \[
+    \abs{\vec{F}_E} = k_e\frac{q_1q_2}{r^2} \approx 2.3 \times 10^{8} \gg 9.7 \times 10^{-48} \approx G \frac{m_1m_2}{r^2} = \abs{\vec{F}_g}.
+  \] 
+  It should also be noted that the strong nuclear force, the force of the gluons binding the quarks together within nucleons, is far stronger than the electromagnetic force.
+\end{remark}
+
+
+\end{document}
