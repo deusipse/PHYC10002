@@ -46,18 +46,18 @@
 \end{definition}
 \begin{theorem}[Coulomb's law]
   The electrostatic force experienced by a charge $q_1$ in the vicinity of another charge $q_2$ is equal to \[
-    \vec{F}_{1} = \frac{1}{4\pi \epsilon_0} \frac{q_1q_2}{\abs{\vec{r}_{12}}}\hat{\vec{r}}_{12},
+    \vec{F}_{1} = \frac{1}{4\pi \epsilon_0} \frac{q_1q_2}{\abs{\vec{r}_{12}}^2}\hat{\vec{r}}_{12},
   \] 
-  where $\epsilon_0 \approx 8.85\times 10^{-12}$.
+  where $\epsilon_0 \approx \qty{8.85e-12}{C^2.N^{-1}.m^{-2}}$.
 \end{theorem}
 \begin{definition}[Coulomb's constant]
   Coulomb's law is sometimes written as \[
-    \vec{F}_{1} = k_e\frac{q_1q_2}{\abs{\vec{r}_{12}}}\hat{\vec{r}}_{12},
+    \vec{F}_{1} = k_e\frac{q_1q_2}{\abs{\vec{r}_{12}}^2}\hat{\vec{r}}_{12},
   \] 
-  where $k_e \approx 8.99 \times 10^{9}$.
+  where $k_e \approx \qty{8.99e9}{N.m^2/C^2}$.
 \end{definition}
 \begin{remark}
-  The electromagnetic force at a nuclear scale is far stronger than the gravitational force. Consider an electron and a proton about $10^{-10}$m apart. Given that $k_e\approx 8.99\times 10^{9}$, $G\approx 6.67\times 10^{-11}$, $m_e \approx 9.1\times 10^{-31}$, $m_p \approx 1.6\times 10^{-27}$, and $e \approx 1.6\time 10^{-19}$, we would have  \[
+  The electromagnetic force at a nuclear scale is far stronger than the gravitational force. Consider an electron and a proton about $\qty{e-10}{m}$ apart. Given that $\qty{8.99e9}{N.m^2/C^2}$, $G\approx \qty{6.67e-11}{m^3.kg^{-1}.s^{-2}}$, $m_e \approx \qty{9.1e-31}{kg}$, $m_p \approx \qty{1.6e-27}{kg}$, and $e \approx \qty{1.6e-19}{C}$, we would have  \[
     \abs{\vec{F}_E} = k_e\frac{q_1q_2}{r^2} \approx 2.3 \times 10^{8} \gg 9.7 \times 10^{-48} \approx G \frac{m_1m_2}{r^2} = \abs{\vec{F}_g}.
   \] 
   It should also be noted that the strong nuclear force, the force of the gluons binding the quarks together within nucleons, is far stronger than the electromagnetic force.
