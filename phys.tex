@@ -6,6 +6,15 @@
 \usepackage{parskip}
 \usepackage{microtype}
 \usepackage{siunitx}
+\usepackage{extdash}
+\usepackage{tikz}
+\usepackage{diffcoeff}
+\difdef { f, s, c, l } {}
+{
+op-symbol = d ,
+op-order-nudge = 1 mu
+}
+\usetikzlibrary{arrows.meta}
 \usepackage{hyperref}
 
 \newtheorem{theorem}{Theorem}
@@ -42,26 +51,69 @@
 \tableofcontents
 
 \section{Electricity}
+
 \begin{definition}
   \emph{Electrostatics} concerns forces between charges at rest.
 \end{definition}
+
 \begin{law}[Coulomb's law]
   The electrostatic force experienced by a charge $q_1$ in the vicinity of another charge $q_2$ is equal to \[
     \vec{F}_{1} = \frac{1}{4\pi \epsilon_0} \frac{q_1q_2}{\abs{\vec{r}_{12}}^2}\hat{\vec{r}}_{12},
   \] 
   where $\epsilon_0 \approx \qty{8.85e-12}{C^2.N^{-1}.m^{-2}}$.
 \end{law}
+
 \begin{definition}[Coulomb's constant]
   Define \emph{Coulomb's constant} to be $k_e = \frac{1}{4\pi\epsilon_0} \approx \qty{8.99e9}{N.m^2/C^2}$. We can then write Coulomb's law as \[
     \vec{F}_{1} = k_e\frac{q_1q_2}{\abs{\vec{r}_{12}}^2}\hat{\vec{r}}_{12}.
   \] 
 \end{definition}
+
 \begin{remark}
   The electromagnetic force at an atomic scale is far stronger than the gravitational force. Consider an electron and a proton about $\qty{e-10}{m}$ apart. Given that $\qty{8.99e9}{N.m^2/C^2}$, $G\approx \qty{6.67e-11}{m^3.kg^{-1}.s^{-2}}$, $m_e \approx \qty{9.1e-31}{kg}$, $m_p \approx \qty{1.6e-27}{kg}$, and $e \approx \qty{1.6e-19}{C}$, we would have  \[
     \abs{\vec{F}_E} = k_e\frac{q_1q_2}{r^2} \approx 2.3 \times 10^{-8} \gg 9.7 \times 10^{-48} \approx G \frac{m_1m_2}{r^2} = \abs{\vec{F}_g}.
   \] 
   It should also be noted that the strong nuclear force, the force of the gluons binding the quarks together within nucleons, is far stronger than the electromagnetic force.
 \end{remark}
+
+\begin{example}
+  We can now calculate the force on a charge from a line of charges (for example, a wire). Consider the setup as depicted in Figure~\ref{fig:1}.
+
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}[scale = 0.7]
+      \draw[draw = blue] (0, -4) node[left] {$-L$} -- (0, 4) node[left] {$L$};
+      \draw[dashed, -{Latex[length = 7pt]}] (10, 0) -- +(2.5, 0) node[midway, below] {$F_{\text{net}}$};
+      \draw[fill = black] (0, 0) -- (10, 0) node[midway, below] {$R$} circle (3pt) node[above] {$q$};
+      \draw (10 - 2.25, 0) arc (180:{180 - atan(2.75/10)}:2.25) node[midway, left] {$\theta$};
+      \draw[line width = 2pt] (0, 2.5) -- (0, 3) node[midway, left] {$dz$};
+      \draw[dashed] (0, 2.75) -- (10, 0) node[midway, above] {$r$};
+    \end{tikzpicture}
+    \caption{A wire of length $2L$ is at a distance of $R$ away from a charge $q$.}
+    \label{fig:1}
+  \end{figure}
+
+  Suppose that the wire has a charge density of \qty[parse-numbers=false]{\lambda}{C.m^{-1}}. Then, an infinitesimally small segment of the wire with length $dz$ will have a charge $\lambda dz$, and will be at a distance of  $r = \frac{R}{\cos \theta}$ away from it (note that $\theta$ depends on the location of $dz$). The net force on $q$ will then simply be the sum of all the forces from $dz$ for all possible locations of $dz$ along the length of the wire. Moreover, notice that the net force will have zero vertical component due to the symmetry of the setup. Hence, the net force on $q$ will be the sum of all the horizontal components of the forces from each $dz$.
+
+  The horizontal force due to $dz$ is calculated via Coulomb's Law:
+  \begin{align*}
+    F_{dz} &= \cos \theta \frac{1}{4\pi \epsilon_0} \frac{q\lambda dz}{r^2} \\
+           &= \frac{\cos \theta}{4\pi\epsilon_0} \frac{q\lambda dz \cos^2 \theta}{R^2} \\
+           &= \frac{q\lambda}{4\pi \epsilon_0 R^2}\cos^3 \theta dz.
+  \end{align*}
+  Integrating from $z = -L$ to $L$ will then give the desired net force on $q$:
+  \[
+    F_{\text{net}} = \int_{-L}^{L} \frac{q\lambda}{4\pi \epsilon_0 R^2} \cos^3 \theta \dl z.
+  \]
+  Note that $z$ is simply the distance of $dz$ to the origin, which is $z = R\tan \theta$. Using this substitution yields $dz = R\sec^2 \theta \dl \theta$, so we get
+  \begin{align*}
+    F_{\text{net}} &= \frac{q\lambda}{4\pi \epsilon_0 R^2} \int_{\theta = -\varphi}^{\theta = \varphi} R \cos^3 \theta \sec^2 \theta \dl \theta \\
+                   &= \frac{q\lambda}{4\pi \epsilon_0 R} \int_{-\varphi}^{\varphi} \cos \theta \dl \theta \\
+                   &= \frac{q\lambda \sin\varphi}{2\pi \epsilon_0 R}.
+  \end{align*}
+  As a special case, if the wire was infinitely long, we would have $\varphi = \frac{\pi}{2}$, so $\sin \varphi = 1$ which would yield a force of $\frac{q\lambda}{2\pi \epsilon_0 R}$. In any case, notice that the force from the wire is proportional to $\frac{1}{R}$ and not $\frac{1}{R^2}$ like for a point charge \Emdash the force dropoff is less dramatic from a wire.
+\end{example}
+
 
 
 \end{document}
